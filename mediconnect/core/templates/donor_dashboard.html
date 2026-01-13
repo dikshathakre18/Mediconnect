@@ -7,6 +7,15 @@
 </head>
 <body>
 
+    <div class="header">
+    {% if user.is_authenticated %}
+        <div class="user-info">
+            <span class="welcome">Welcome, {{ user.username }}</span>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        </div>
+    {% endif %}
+</div>
+
 <div class="container">
     <h2>Donor Dashboard</h2>
 
