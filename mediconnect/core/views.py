@@ -98,3 +98,7 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+# ================= ABOUT PAGE =================
+def about(request):
+    return render(request, 'about.html')

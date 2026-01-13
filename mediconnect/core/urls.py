@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('create-request/', views.create_request, name='create_request'),
     path('update-request/<int:id>/<str:status>/', views.update_request, name='update_request'),
+    path('about/', views.about, name='about'),
 ]
 
 
