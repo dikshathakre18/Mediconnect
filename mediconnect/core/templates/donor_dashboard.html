@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donor Dashboard</title>
+    <link rel="stylesheet" href="{% static 'core/css/donor_dashboard.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Donor Dashboard</h2>
+
+    {% if requests %}
+        {% for r in requests %}
+            <div class="card">
+                <p><b>Type:</b> {{ r.request_type }}</p>
+                <p><b>Details:</b> {{ r.detail }}</p>
+                <p><b>Status:</b> {{ r.status }}</p>
+
+                {% if r.status == "pending" %}
+                    <a href="/update-request/{{ r.id }}/accepted/" class="btn">
+                        Accept
+                    </a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No requests available.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+
+

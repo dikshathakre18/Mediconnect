@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Requester Dashboard</title>
+    <link rel="stylesheet" href="{% static 'core/css/requester_dashboard.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Requester Dashboard</h2>
+
+    <a href="/create-request/" class="btn">Create Request</a>
+
+    {% if requests %}
+        {% for r in requests %}
+            <div class="card">
+                <p><b>Type:</b> {{ r.request_type }}</p>
+                <p><b>Details:</b> {{ r.detail }}</p>
+                <p><b>Status:</b> {{ r.status }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No requests created yet.</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+

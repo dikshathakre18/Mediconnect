@@ -1,0 +1,11 @@
+/* Simple auth styles used by login/register pages */
+body { font-family: Arial, sans-serif; background: linear-gradient(180deg,#eef2f6,#f8fafc); margin:0; padding:0; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.auth-card { width: 440px; max-width: calc(100% - 40px); background: #fff; padding: 36px; border-radius: 12px; box-shadow: 0 10px 30px rgba(2,6,23,0.08); }
+.auth-card h2 { margin: 0 0 14px 0; color:#0f1724; text-align:center; }
+.auth-card label { display:block; margin:10px 0 6px; font-weight:600; color:#334155; }
+.auth-card input { width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e2e8f0; }
+.auth-card button { margin-top:16px; width:100%; padding:10px 12px; background:#1976d2; color:#fff; border:none; border-radius:8px; font-weight:700; cursor:pointer; }
+.auth-card button:hover { background:#155fa8 }
+.auth-footer { margin-top:14px; color:#64748b; }
+.auth-footer a { color:#1976d2; text-decoration:none; font-weight:700; margin-left:6px; }
+.error { background:#fee2e2; color:#991b1b; padding:8px 10px; border-radius:6px; margin-bottom:8px; }

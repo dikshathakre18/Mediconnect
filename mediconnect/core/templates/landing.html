@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MediConnect</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'core/css/landing.css' %}">
+</head>
+
+<body>
+
+<header>
+    <div class="left">
+        <img class="logo_img" src="{% static 'core/images/logo.png' %}" alt="Logo">
+        <h1>MediConnect</h1>
+    </div>
+
+    <div class="right">
+        <div class="menu">
+            <ul>
+                <li class="dropdown">
+                    <a href="#">Role</a>
+                    <div class="dropdown-content">
+                        <a href="/requester/dashboard/">Requester</a>
+                        <a href="/donor/dashboard/">Donor</a>
+                    </div>
+                </li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"><button class="reg-btn">Logout</button></a>
+            {% else %}
+                <a href="{% url 'login' %}"><button class="login-btn">Login</button></a>
+                <a href="{% url 'register' %}"><button class="reg-btn">Register</button></a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<section class="section">
+    <img src="{% static 'core/images/final_bg.jpg' %}" class="background">
+
+    <div class="cover_Content">
+        <h1>Connecting Lives When Every Second Matters</h1>
+        <p>
+            We connect people with nearby blood and medicine donors,
+            ensuring fast and reliable help in emergency situations.
+        </p>
+
+        <div class="home_buttons">
+            <a href="/select-request/"><button>Find Donor</button></a>
+            <a href="{% url 'register' %}"><button>Register</button></a>
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+    <div class="cards">
+        <img src="{% static 'core/images/medicine.jpg' %}" alt="">
+        <div class="description">
+            <p>MediConnect connects you with people willing to share life-saving medicines, helping you get the
+                support you need in critical times</p>
+        </div>
+    </div>
+    <div class="cards">
+        <img src="{% static 'core/images/bg2.jpg' %}" alt="">
+        <div class="description">
+            <p>Connect with willing blood donors in real time and get help when every moment counts.</p>
+        </div>
+    </div>
+    <div class="cards">
+        <img src="{% static 'core/images/donate.jpg' %}" alt="">
+        <div class="description">
+            <p>Builds a reliable network of verified blood donors to ensure timely support for those in need.</p>
+        </div>
+    </div>
+    <div class="cards">
+        <img src="{% static 'core/images/sharing.jpg' %}" alt="">
+        <div class="description">
+            <p>A platform built on compassion, where individuals come together to support each other during medical
+                emergencies.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-column">
+                <h3>Mediconnect</h3>
+                <p>
+                    Connecting those in need with those who care.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Contact</h4>
+                <p>Email: support@mediconnect.com</p>
+                <p>Phone: +1 234 567 890</p>
+                <div class="social-icons">
+                    <a href="#"><img src="{% static 'core/images/fb_icon.png' %}" alt="fb"></a>
+                    <a href="#"><img src="{% static 'core/images/x_icon.png' %}" alt="x"></a>
+                    <a href="#"><img src="{% static 'core/images/insta_icon.png' %}" alt="insta"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Mediconnect. All rights reserved.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
