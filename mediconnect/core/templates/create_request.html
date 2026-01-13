@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'core/css/create_request.css' %}">
+    <title>Create Request</title>
+</head>
+<body>
+
+<div class="create-container">
+    <form method="POST" class="request-form">
+        {% csrf_token %}
+
+        <div class="form-header">
+            <h2>Create Request</h2>
+            {% if request.GET.type %}
+                {% if request.GET.type == 'blood' %}
+                    <span class="type-badge blood">Blood</span>
+                {% elif request.GET.type == 'medicine' %}
+                    <span class="type-badge medicine">Medicine</span>
+                {% else %}
+                    <span class="type-badge">{{ request.GET.type }}</span>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <input type="hidden" name="type" value="{{ request.GET.type }}">
+
+        <label for="type_select">Request Type</label>
+        <select id="type_select" name="type_select">
+            <option value="">-- Select Type --</option>
+            <option value="blood" {% if request.GET.type == 'blood' %}selected{% endif %}>Blood</option>
+            <option value="medicine" {% if request.GET.type == 'medicine' %}selected{% endif %}>Medicine</option>
+        </select>
+
+        <div id="blood_fields" style="display:none;">
+            <label for="blood_group">Blood Group</label>
+            <select id="blood_group" name="blood_group">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+            </select>
+        </div>
+
+        <div id="medicine_fields" style="display:none;">
+            <label for="medicine_name">Medicine Name</label>
+            <input id="medicine_name" type="text" name="medicine_name" placeholder="e.g. Paracetamol">
+        </div>
+
+        <label for="detail">Additional Details</label>
+        <textarea id="detail" name="detail" placeholder="Describe what you need" rows="3" required></textarea>
+
+        <label for="location">Location</label>
+        <input id="location" type="text" name="location" placeholder="City, Area or Hospital" required>
+
+        <div class="form-actions">
+            <button type="submit" class="primary">Submit Request</button>
+            <a href="/requester/dashboard/" class="secondary">Cancel</a>
+        </div>
+
+    </form>
+</div>
+
+
+</body>
+</html>
+
+<script>
+    (function(){
+        const typeSelect = document.getElementById('type_select');
+        const bloodFields = document.getElementById('blood_fields');
+        const medFields = document.getElementById('medicine_fields');
+        const hiddenType = document.querySelector('input[name="type"]');
+        const form = document.querySelector('.request-form');
+        const detail = document.getElementById('detail');
+
+        function updateVisibility(){
+            const v = typeSelect.value;
+            if(v === 'blood'){
+                bloodFields.style.display = 'block';
+                medFields.style.display = 'none';
+            } else if(v === 'medicine'){
+                bloodFields.style.display = 'none';
+                medFields.style.display = 'block';
+            } else {
+                bloodFields.style.display = 'none';
+                medFields.style.display = 'none';
+            }
+            if(hiddenType) hiddenType.value = v;
+        }
+
+        // initialize from GET type if present
+        updateVisibility();
+
+        typeSelect.addEventListener('change', updateVisibility);
+
+        form.addEventListener('submit', function(e){
+            // prepend selected blood/medicine into details
+            const t = typeSelect.value;
+            let prefix = '';
+            if(t === 'blood'){
+                const bg = document.getElementById('blood_group').value;
+                prefix = 'Blood Group: ' + bg + '\n';
+            } else if(t === 'medicine'){
+                const mn = document.getElementById('medicine_name').value;
+                if(mn) prefix = 'Medicine: ' + mn + '\n';
+            }
+            if(prefix){
+                detail.value = prefix + detail.value;
+            }
+        });
+    })();
+</script>
+
+
+
+

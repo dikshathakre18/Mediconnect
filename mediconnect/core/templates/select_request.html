@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'core/css/search.css' %}">
+</head>
+<body>
+    <div class="navbar">
+    <img src="{% static 'core/images/logo.png' %}" alt="MediConnect Logo">
+</div>
+
+
+<section class="search-filter">
+    <h2>Select Request Type</h2>
+
+    <a href="/create-request/?type=blood">
+        <button>Blood</button>
+    </a>
+
+    <a href="/create-request/?type=medicine">
+        <button>Medicine</button>
+    </a>
+</section>
+<div class="footer">
+    © 2026 Mediconnect. All rights reserved.
+</div>
+
+
+</body>
+</html>
